@@ -266,8 +266,23 @@ ggplot(yearly_rank_viz, aes(fill=rank, y=values, x=forecaster)) +
 ## Forecasting Model Territories
 
 ```{r, comment=NA, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4}
-
-
+load(here("data", "full.yearly.rda"))
+load(here("data", "tsne.rda"))
+full.yearly.nonmiss <- full.yearly %>% select(where(~!any(is.na(.))))
+#yearly.analysis <- full.yearly.nonmiss %>% select(-c(frequency, nperiods, seasonal_period, bestrank))
+#library(Rtsne)
+## Executing the algorithm on curated data
+#tsne <- Rtsne(full.yearly.nonmiss, dims = 2, perplexity=30, verbose=TRUE, max_iter = 1000, check_duplicates = FALSE, pca=FALSE)
+full.yearly.nonmiss$y1 <- tsne$Y[, 1]
+full.yearly.nonmiss$y2 <- tsne$Y[, 2]
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f1 = ifelse(bestrank==1, 1, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f25 = ifelse(bestrank==25, 25, 0))
+full.yearly.nonmiss$f1 <- as.factor(full.yearly.nonmiss$f1)
+full.yearly.nonmiss$f25 <- as.factor(full.yearly.nonmiss$f25)
+p1 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f1))+geom_point(alpha=0.5, size=0.2)+ggtitle("Forecaster-01")
+p2 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f25))+geom_point(alpha=0.5, size=0.2)+ggtitle("Forecaster-25")
+library(patchwork)
+p1|p2
 ```
 
 

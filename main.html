@@ -38,7 +38,7 @@ class: center, middle, inverse, title-slide
 
 - 100000 time series
 
-- performance measures for point forecasts: **overall weighted average (OWA)**
+- Performance measures for point forecasts: **overall weighted average (OWA)**
 
     - Mean Absolute Scale Error (MASE)
     
@@ -137,6 +137,55 @@ colMeans(yearly_MASE)
 ## Motivation
 
 ![](r5.png)
+
+
+
+---
+## Composition of the rank 1 counts 
+
+
+```
+yearly_MASE_rank
+   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+1601  703  366  438  335  275  528  836 1179  562  606  762  672 1069  847  798 
+  17   18   19   20   21   22   23   24   25 
+1160 1488  765  847  708  646  551 2001 3257 
+```
+
+&lt;img src="main_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
+
+
+---
+## Composition of the rank 1 counts 
+
+&lt;img src="main_files/figure-html/unnamed-chunk-6-1.png" width="100%" /&gt;
+
+&lt;img src="main_files/figure-html/unnamed-chunk-7-1.png" width="100%" /&gt;
+
+---
+
+## Distribution of MASE values
+
+&lt;img src="main_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+
+
+---
+## Distribution of ranks by forecasters
+
+&lt;img src="main_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
+
+---
+
+## Distribution of ranks by forecasters
+
+&lt;img src="main_files/figure-html/unnamed-chunk-10-1.png" width="100%" /&gt;
+
+---
+## Forecasting Model Territories
+
+&lt;img src="main_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+
+
 
 ---
 class: center, middle
