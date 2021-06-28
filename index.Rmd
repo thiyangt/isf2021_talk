@@ -264,6 +264,19 @@ ggplot(yearly_rank_viz, aes(fill=rank, y=values, x=forecaster)) +
 
 ---
 
+![](feature.png)
+
+---
+
+## Time series features
+
+```{r, comment=NA, echo=FALSE}
+load(here("data", "full.yearly.rda"))
+colnames(full.yearly)
+```
+
+---
+
 ## Forecasting Model Territories
 
 ```{r, comment=NA, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4}
@@ -440,9 +453,18 @@ knitr::include_graphics("heat.png")
 
 class: center, middle
 
-# Thanks you!
+# Thank You!
 
-email: ttalagala@gmail.com
+```{r, echo=FALSE}
+anicon::faa("twitter", animate="float", size=3, colour="lightblue")
+```
 
-github/ twitter: thiyangt
+```{r, echo=FALSE}
+anicon::faa("github", animate="float", size=3, colour="black")
+```
+
+# @thiyangt
+
+# Web: https://thiyanga.netlify.com/
+
 

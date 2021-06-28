@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="Thiyanga S. Talagala" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/font-awesome-animation/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="index_files/fontawesome/js/fontawesome-all.min.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
@@ -182,27 +184,50 @@ yearly_MASE_rank
 
 ---
 
-## Forecasting Model Territories
-
-&lt;img src="index_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+![](feature.png)
 
 ---
 
+## Time series features
 
+
+```
+ [1] "frequency"        "nperiods"         "seasonal_period"  "trend"           
+ [5] "spike"            "linearity"        "curvature"        "e_acf1"          
+ [9] "e_acf10"          "entropy"          "x_acf1"           "x_acf10"         
+[13] "diff1_acf1"       "diff1_acf10"      "diff2_acf1"       "diff2_acf10"     
+[17] "x_pacf5"          "diff1x_pacf5"     "diff2x_pacf5"     "max_level_shift" 
+[21] "time_level_shift" "max_var_shift"    "time_var_shift"   "max_kl_shift"    
+[25] "time_kl_shift"    "crossing_points"  "flat_spots"       "hurst"           
+[29] "unitroot_kpss"    "unitroot_pp"      "alpha"            "beta"            
+[33] "arch_acf"         "garch_acf"        "arch_r2"          "garch_r2"        
+[37] "nonlinearity"     "ARCH.LM"          "firstzero_ac"     "firstmin_ac"     
+[41] "zero_proportion"  "bestrank"        
+```
+
+---
+
+## Forecasting Model Territories
 
 &lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="100%" /&gt;
 
+---
+
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="100%" /&gt;
+
 
 ---
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
 
 ---
 
 #### Distribution of features
 
-&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="100%" /&gt;
 
 
 ---
@@ -220,11 +245,16 @@ rows: time series, columns: forecasters, cell: MASE
 
 class: center, middle
 
-# Thanks you!
+# Thank You!
 
-email: ttalagala@gmail.com
+<span>&lt;i class="fab  fa-twitter fa-3x faa-float animated " style=" color:lightblue;"&gt;&lt;/i&gt;</span>
 
-github/ twitter: thiyangt
+<span>&lt;i class="fab  fa-github fa-3x faa-float animated " style=" color:black;"&gt;&lt;/i&gt;</span>
+
+# @thiyangt
+
+# Web: https://thiyanga.netlify.com/
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
