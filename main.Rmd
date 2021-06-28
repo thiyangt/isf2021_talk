@@ -263,6 +263,7 @@ ggplot(yearly_rank_viz, aes(fill=rank, y=values, x=forecaster)) +
 ```
 
 ---
+
 ## Forecasting Model Territories
 
 ```{r, comment=NA, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4}
@@ -277,15 +278,63 @@ full.yearly.nonmiss$y1 <- tsne$Y[, 1]
 full.yearly.nonmiss$y2 <- tsne$Y[, 2]
 full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f1 = ifelse(bestrank==1, 1, 0))
 full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f25 = ifelse(bestrank==25, 25, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f2 = ifelse(bestrank==2, 2, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f3 = ifelse(bestrank==3, 3, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f4 = ifelse(bestrank==4, 4, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f5 = ifelse(bestrank==5, 5, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f6 = ifelse(bestrank==6, 6, 0))
 full.yearly.nonmiss$f1 <- as.factor(full.yearly.nonmiss$f1)
 full.yearly.nonmiss$f25 <- as.factor(full.yearly.nonmiss$f25)
-p1 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f1))+geom_point(alpha=0.5, size=0.2)+ggtitle("Forecaster-01")
-p2 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f25))+geom_point(alpha=0.5, size=0.2)+ggtitle("Forecaster-25")
+d1 <- full.yearly.nonmiss %>% filter(f1==1)
+d25 <- full.yearly.nonmiss %>% filter(f25==25)
+p1 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f1))+geom_point(alpha=0.5, size=0.3) + 
+  scale_colour_manual(values=c( "#1b9e77", "#d95f02"), labels = c("other", "forecaster 1"))+ geom_point(data=d1, aes(x=y1, y=y2), colour="#d95f02",size=0.3) +
+  ggtitle("Forecaster-01") + xlab("tsne component 1") + ylab("tsne component 2")  + theme(legend.position = "bottom") +  theme(legend.title = element_blank(), aspect.ratio=1) + coord_equal() 
+p2 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f25))+geom_point(alpha=0.5, size=0.3)+
+  scale_colour_manual(values=c( "#1b9e77", "#7570b3"), labels = c("other", "forecaster 25"))+ geom_point(data=d25, aes(x=y1, y=y2), colour="#7570b3", size=0.3) + ggtitle("Forecaster-25") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "bottom", aspect.ratio=1) +  theme(legend.title = element_blank())
 library(patchwork)
 p1|p2
 ```
 
+---
 
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=5}
+full.yearly.nonmiss$f2 <- as.factor(full.yearly.nonmiss$f2)
+full.yearly.nonmiss$f3 <- as.factor(full.yearly.nonmiss$f3)
+full.yearly.nonmiss$f4 <- as.factor(full.yearly.nonmiss$f4)
+full.yearly.nonmiss$f5 <- as.factor(full.yearly.nonmiss$f5)
+full.yearly.nonmiss$f6 <- as.factor(full.yearly.nonmiss$f6)
+
+d1 <- full.yearly.nonmiss %>% filter(f1==1)
+d2 <- full.yearly.nonmiss %>% filter(f2==2)
+d3 <- full.yearly.nonmiss %>% filter(f3==3)
+d4 <- full.yearly.nonmiss %>% filter(f4==4)
+d5 <- full.yearly.nonmiss %>% filter(f5==5)
+d6 <- full.yearly.nonmiss %>% filter(f6==6)
+
+
+f1 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f1))+geom_point(alpha=0.5, size=0.2) +
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-1") + xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1) + geom_point(data=d1, aes(x=y1, y=y2), colour="#e7298a", size=0.2)
+f2 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f2))+geom_point(alpha=0.5, size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-2") + geom_point(data=d2, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f3 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f3))+geom_point(alpha=0.5, size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-3") + geom_point(data=d3, aes(x=y1, y=y2), colour="#e7298a", size=0.2) +
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f4 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f4))+geom_point(alpha=0.5, size=0.2)+ geom_point(data=d4, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-4") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f5 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f5))+geom_point(alpha=0.5, size=0.2)+ geom_point(data=d5, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-5") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f6 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f6))+geom_point(alpha=0.5, size=0.2, size=0.2)+geom_point(data=d6, aes(x=y1, y=y2), colour="#e7298a")+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-6") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+
+(f1|f2|f3)/(f4|f5|f6)
+
+```
 
 ---
 class: center, middle
