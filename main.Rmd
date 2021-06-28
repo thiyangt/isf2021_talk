@@ -119,6 +119,43 @@ Source: Forecasting with high frequency data: M4 competition and beyond, IJF, 20
 ## Motivation
 
 
+```{r, comment=NA, echo=FALSE}
+library(here)
+load(here("data", "yearly_MASE.rda"))
+```
+
+```{r, comment=NA}
+colMeans(yearly_MASE)
+```
+
+
+
+
+
+```{r, fig.height=3, comment=NA, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+meanMASE <- colMeans(yearly_MASE)
+rank <- as.factor(1:25)
+df <- data.frame(M4rank=rank, meanMASE = meanMASE)
+ggplot(df, aes(x=M4rank, y=meanMASE)) + geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#081d58") + xlab("M4 competition rank") + ylab("mean MASE")
+
+```
+
+
+]
+
+---
+
+## Motivation
+
+![](r4.png)
+
+---
+
+## Motivation
+
+![](r5.png)
+
 ---
 class: center, middle
 
