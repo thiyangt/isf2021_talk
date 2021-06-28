@@ -299,6 +299,8 @@ p1|p2
 
 ---
 
+
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=5}
 full.yearly.nonmiss$f2 <- as.factor(full.yearly.nonmiss$f2)
 full.yearly.nonmiss$f3 <- as.factor(full.yearly.nonmiss$f3)
@@ -328,7 +330,7 @@ f4 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f4))+geom_point(alpha=0.5,
 f5 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f5))+geom_point(alpha=0.5, size=0.2)+ geom_point(data=d5, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
   scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-5") + 
   xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
-f6 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f6))+geom_point(alpha=0.5, size=0.2, size=0.2)+geom_point(data=d6, aes(x=y1, y=y2), colour="#e7298a")+
+f6 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f6))+geom_point(alpha=0.5, size=0.2, size=0.2)+geom_point(data=d6, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
   scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-6") + 
   xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
 
@@ -336,14 +338,111 @@ f6 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f6))+geom_point(alpha=0.5,
 
 ```
 
+
 ---
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=5}
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f24 = ifelse(bestrank==24, 24, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f23 = ifelse(bestrank==23, 23, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f22 = ifelse(bestrank==22, 22, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f21 = ifelse(bestrank==21, 21, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f20 = ifelse(bestrank==20, 20, 0))
+full.yearly.nonmiss <- full.yearly.nonmiss %>% mutate(f19 = ifelse(bestrank==19, 19, 0))
+
+full.yearly.nonmiss$f20 <- as.factor(full.yearly.nonmiss$f20)
+full.yearly.nonmiss$f21 <- as.factor(full.yearly.nonmiss$f21)
+full.yearly.nonmiss$f22 <- as.factor(full.yearly.nonmiss$f22)
+full.yearly.nonmiss$f23 <- as.factor(full.yearly.nonmiss$f23)
+full.yearly.nonmiss$f24 <- as.factor(full.yearly.nonmiss$f24)
+full.yearly.nonmiss$f25 <- as.factor(full.yearly.nonmiss$f25)
+
+d19 <- full.yearly.nonmiss %>% filter(f19==19)
+d20 <- full.yearly.nonmiss %>% filter(f20==20)
+d21 <- full.yearly.nonmiss %>% filter(f21==21)
+d22 <- full.yearly.nonmiss %>% filter(f22==22)
+d23 <- full.yearly.nonmiss %>% filter(f23==23)
+d24 <- full.yearly.nonmiss %>% filter(f24==24)
+d25 <- full.yearly.nonmiss %>% filter(f25==25)
+
+f25 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f25))+geom_point(alpha=0.5, size=0.2) +
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-25") + xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1) + geom_point(data=d25, aes(x=y1, y=y2), colour="#e7298a", size=0.2)
+f20 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f20))+geom_point(alpha=0.5, size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-20") + geom_point(data=d20, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f21 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f21))+geom_point(alpha=0.5, size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-21") + geom_point(data=d21, aes(x=y1, y=y2), colour="#e7298a", size=0.2) +
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f22 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f22))+geom_point(alpha=0.5, size=0.2)+ geom_point(data=d22, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-22") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f23 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f23))+geom_point(alpha=0.5, size=0.2)+ geom_point(data=d23, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-23") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+f24 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=f24))+geom_point(alpha=0.5, size=0.2, size=0.2)+geom_point(data=d24, aes(x=y1, y=y2), colour="#e7298a", size=0.2)+
+  scale_colour_manual(values=c( "#1b9e77", "#e7298a"))+ ggtitle("Forecaster-24") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(legend.position = "none", aspect.ratio=1)
+
+(f20|f21|f22)/(f23|f24|f25)
+
+```
+
+---
+
+#### Distribution of features
+
+```{r, comment=NA, message=FALSE, warning=FALSE, echo=FALSE, fig.height=5}
+library(viridis)
+library(viridisLite)
+f25 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=trend))+geom_point(alpha=0.5, size=0.2) +
+  ggtitle("trend") + xlab("tsne component 1") + ylab("tsne component 2") + theme(aspect.ratio=1) + scale_color_viridis()
+
+f20 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=alpha))+geom_point(alpha=0.5, size=0.2)+
+  ggtitle("alpha") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme( aspect.ratio=1) + scale_color_viridis()
+
+f21 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=x_acf1))+geom_point(alpha=0.5, size=0.2)+
+  ggtitle("x_acf1") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(aspect.ratio=1) +  scale_color_viridis()
+
+f22 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=beta))+geom_point(alpha=0.5, size=0.2)+ 
+ggtitle("beta") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(aspect.ratio=1) +  scale_color_viridis()
+
+f23 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=entropy))+geom_point(alpha=0.5, size=0.2)+
+ ggtitle("entropy") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme(aspect.ratio=1) +  scale_color_viridis()
+
+f24 <- ggplot(full.yearly.nonmiss, aes(x=y1, y=y2, col=diff1_acf1))+geom_point(alpha=0.5, size=0.2, size=0.2)+
+ ggtitle("diff1_acf1") + 
+  xlab("tsne component 1") + ylab("tsne component 2") + theme( aspect.ratio=1) +  scale_color_viridis()
+
+
+
+(f25|f21|f24)/(f23|f20|f22)
+```
+
+
+---
+
+#### Heatmap visualization of MASE
+
+rows: time series, columns: forecasters, cell: MASE
+
+```{r   out.width = "90%", echo = FALSE, fig.cap=''}
+knitr::include_graphics("heat.png")
+```
+
+
+
+---
+
+
 class: center, middle
 
 # Thanks you!
 
-Slides created via the R packages:
+email: ttalagala@gmail.com
 
-[**xaringan**](https://github.com/yihui/xaringan)<br>
-[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+github/ twitter: thiyangt
 
-The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
