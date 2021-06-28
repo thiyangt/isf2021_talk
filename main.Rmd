@@ -1,0 +1,101 @@
+---
+title: "Forecasting Model Territories"
+subtitle: "41st International Symposium on Forecasting"  
+author: 
+  - "Thiyanga S. Talagala"
+date: '2021 - 06 - 29'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, custom.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1381B0",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF"
+)
+```
+
+## Forecasting competitions
+
+.pull-left[
+![](m4.png)
+
+![](data.png)
+
+]
+
+
+.pull-right[
+
+- 100000 time series
+
+- performance measures for point forecasts: **overall weighted average (OWA)**
+
+    - Mean Absolute Scale Error (MASE)
+    
+    - symmetric Mean Absolute Percentage Error (sMAPE)
+
+
+]
+---
+
+
+.pull-left[
+
+## Results
+
+```{r   out.width = "90%", echo = FALSE, fig.cap=''}
+knitr::include_graphics("m4results.jpg")
+```
+
+
+Source: Forecasting with high frequency data: M4 competition and beyond, IJF, 2020
+
+]
+
+.pull-right[
+
+## R Package: `M4comp2018`
+
+![](m4comp2018.png)
+
+]
+
+---
+
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R packages:
+
+[**xaringan**](https://github.com/yihui/xaringan)<br>
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
