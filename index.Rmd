@@ -275,6 +275,15 @@ load(here("data", "full.yearly.rda"))
 colnames(full.yearly)
 ```
 
+--
+
+## t-distributed stochastic neighbor embedding (t-SNE)
+
+
+The goal is to take a set of points in a high-dimensional space and find a representation of those points in a lower-dimensional space, while preserving the local structure of the high dimensional data (that is to group neighboring data points together).
+
+
+
 ---
 
 ## Forecasting Model Territories
@@ -465,6 +474,9 @@ anicon::faa("github", animate="float", size=3, colour="black")
 
 # @thiyangt
 
-# Web: https://thiyanga.netlify.com/
+
+### web: https://thiyanga.netlify.app/talk/isf21-talk/
+
+email: ttalagala@sjp.ac.lk
 
 
