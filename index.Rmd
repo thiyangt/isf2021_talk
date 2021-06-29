@@ -180,7 +180,7 @@ M4rank <- as.factor(1:25)
 rank1 <- as.vector(table(yearly_MASE_rank))
 df2 <- data.frame(x=M4rank, rank1=rank1)
 ggplot(df2, aes(x=x, y=rank1)) +
-geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#e7298a") + xlab("M4 competition rank") + ylab("Number of rank 1 counts")
+geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#e7298a") + xlab("Forecaster") + ylab("Number of rank 1 counts")
 ```
 
 
@@ -193,14 +193,14 @@ M4rank <- as.factor(1:25)
 rank1 <- as.vector(table(yearly_MASE_rank))
 df2 <- data.frame(x=M4rank, rank1=rank1)
 ggplot(df2, aes(x=x, y=rank1)) +
-geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#e7298a") + xlab("M4 competition rank") + ylab("Number of rank 1 counts")
+geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#e7298a") + xlab("Forecaster") + ylab("Number of rank 1 counts")
 ```
 
 ```{r, comment=NA, message=FALSE, warning=FALSE, echo=FALSE, fig.height=2}
 meanMASE <- colMeans(yearly_MASE)
 rank <- as.factor(1:25)
 df <- data.frame(M4rank=rank, meanMASE = meanMASE)
-ggplot(df, aes(x=M4rank, y=meanMASE)) + geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#081d58") + xlab("M4 competition rank") + ylab("mean MASE")
+ggplot(df, aes(x=M4rank, y=meanMASE)) + geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#081d58") + xlab("Forecaster") + ylab("mean MASE")
 ```
 
 ---
