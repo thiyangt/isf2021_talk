@@ -159,7 +159,19 @@ ggplot(df, aes(x=M4rank, y=meanMASE)) + geom_bar(stat = "identity", width = 0.9,
 
 
 ---
-## Composition of the rank 1 counts 
+
+## Results: labeled according to the lowest MASE
+
+```{r, comment=NA, message=FALSE, echo=FALSE}
+load(here("data", "yearly_MASE_rank.rda"))
+yearly_MASE_rank
+```
+
+
+
+---
+
+## Composition of labels 
 
 ```{r, comment=NA, message=FALSE, warning=FALSE, echo=FALSE, fig.height=3}
 load(here("data", "yearly_MASE_rank.rda"))
@@ -173,7 +185,7 @@ geom_bar(stat = "identity", width = 0.9, colour="#bdbdbd", fill="#e7298a") + xla
 
 
 ---
-## Composition of the rank 1 counts 
+## Composition of labels and mean MASE
 
 ```{r, comment=NA, message=FALSE, warning=FALSE, echo=FALSE, fig.height=2}
 load(here("data", "yearly_MASE_rank.rda"))
@@ -201,6 +213,67 @@ yearly_MASE_df <- as.data.frame(yearly_MASE)
 ggplot(stack(yearly_MASE_df), aes(x=ind, y=values)) + geom_boxplot(coef=1e30) + xlab("Forecaster") + ylab("MASE")
 
 ```
+
+---
+
+.pull-left[
+
+forecaster-1
+
+```{r, comment=NA, message=FALSE, echo=FALSE}
+library(matrixStats)
+load("data/yearly_MASE.rda")
+rankmat <- rowRanks(yearly_MASE)
+yearly_MASE_rank_df <- as.data.frame(rankmat)
+yearly_MASE_rank_stack <- stack(yearly_MASE_rank_df)
+
+forecaster <- as.factor(rep(1:25, each=25))
+rank <- as.factor(rep(1:25, times=25))
+values <- c(as.numeric(table(rankmat[,1])),
+  as.numeric(table(rankmat[,2])),
+  as.numeric(table(rankmat[,3])),
+  as.numeric(table(rankmat[,4])),
+  as.numeric(table(rankmat[,5])),
+  as.numeric(table(rankmat[,6])),
+  as.numeric(table(rankmat[,7])),
+  as.numeric(table(rankmat[,8])),
+  as.numeric(table(rankmat[,9])),
+  as.numeric(table(rankmat[,10])),
+  as.numeric(table(rankmat[,11])),
+  as.numeric(table(rankmat[,12])),
+  as.numeric(table(rankmat[,13])),
+  as.numeric(table(rankmat[,14])),
+  as.numeric(table(rankmat[,15])),
+  as.numeric(table(rankmat[,16])),
+  as.numeric(table(rankmat[,17])),
+  as.numeric(table(rankmat[,18])),
+  as.numeric(table(rankmat[,19])),
+  as.numeric(table(rankmat[,20])),
+  as.numeric(table(rankmat[,21])),
+  as.numeric(table(rankmat[,22])),
+  as.numeric(table(rankmat[,23])),
+  as.numeric(table(rankmat[,24])),
+  as.numeric(table(rankmat[,25])))
+yearly_rank_viz <- data.frame(forecaster=forecaster,
+                              rank=rank,
+                              values=values)
+head(yearly_rank_viz, 25)
+
+```
+]
+
+.pull-right[
+
+forecaster-25
+
+```{r, comment=NA, message=FALSE, echo=FALSE}
+tail(yearly_rank_viz, 25)
+
+```
+
+
+]
+
 
 
 ---
@@ -246,7 +319,7 @@ yearly_rank_viz <- data.frame(forecaster=forecaster,
 ggplot(yearly_rank_viz, aes(fill=rank, y=values, x=forecaster)) + 
   geom_bar(position="fill", stat="identity") +
   scale_fill_viridis_d(option = 'magma') +
-  coord_flip() + xlab("Proportion of ranks")
+  coord_flip() + ylab("Proportion of ranks") + xlab("Forecaster")
 ```
 
 ---
@@ -258,7 +331,7 @@ ggplot(yearly_rank_viz, aes(fill=rank, y=values, x=forecaster)) +
   geom_bar(position="fill", stat="identity") + 
   scale_fill_brewer(palette="PRGn") +
   #scale_fill_viridis(discrete = T) +
-  coord_flip()
+  coord_flip() + ylab("Proportion of ranks") + xlab("Forecaster")
 
 ```
 
@@ -272,7 +345,7 @@ ggplot(yearly_rank_viz, aes(fill=rank, y=values, x=forecaster)) +
 
 ```{r, comment=NA, echo=FALSE}
 load(here("data", "full.yearly.rda"))
-colnames(full.yearly)
+colnames(full.yearly)[-c(1, 2, 3, 42)]
 ```
 
 --
